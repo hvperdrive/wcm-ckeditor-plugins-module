@@ -1,0 +1,823 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "members",
+        "version": "0.4.25",
+        "description": "Members module"
+    },
+    "paths": {
+        "/api/1.0.0/members/{uuid}": {
+            "delete": {
+                "tags": ["Members"],
+                "description": "Get all members.",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "uuid",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "Members uuid "
+                }],
+                "responses": {
+                    "204": {
+                        "description": "Empty response "
+                    },
+                    "400": {
+                        "description": "Bad request ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "412": {
+                        "description": "Precondition failed ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Members"],
+                "description": "Get all members.",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "uuid",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "Members uuid "
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success ",
+                        "schema": {
+                            "$ref": "#/definitions/Members200One"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "412": {
+                        "description": "Precondition failed ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Members"],
+                "description": "Get all members.",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "uuid",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "Members uuid "
+                }, {
+                    "in": "body",
+                    "name": "body",
+                    "description": "Metadata ",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/meta"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success ",
+                        "schema": {
+                            "$ref": "#/definitions/Members200Update"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not found ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "412": {
+                        "description": "Precondition failed ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/1.0.0/members/": {
+            "get": {
+                "tags": ["Members"],
+                "description": "Get all members.",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "Success ",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Members200All"
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad request ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/1.0.0/members/auth/logout": {
+            "get": {
+                "tags": ["Members_Auth"],
+                "description": "Logout the current member",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "apikey",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "You&#39;re apikey. "
+                }, {
+                    "name": "tenant",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Tenant to connect to. "
+                }, {
+                    "name": "Authorization",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Bearer token of last login (will skip user login if acces token is valid). "
+                }, {
+                    "name": "service_type",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Member service type "
+                }],
+                "responses": {
+                    "204": {
+                        "description": "Empty response "
+                    }
+                }
+            }
+        },
+        "/api/1.0.0/members/auth/profile": {
+            "get": {
+                "tags": ["Members_Auth"],
+                "description": "Get current profile.",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "apikey",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "You&#39;re apikey. "
+                }, {
+                    "name": "tenant",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Tenant to connect to. "
+                }, {
+                    "name": "Authorization",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Bearer token of last login (will skip user login if acces token is valid). "
+                }, {
+                    "name": "service_type",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Member service type. "
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success ",
+                        "schema": {
+                            "$ref": "#/definitions/Members200Profile"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/1.0.0/members/auth/token?authorization_code={authorization_code}": {
+            "get": {
+                "tags": ["Members_Auth"],
+                "description": "Login call",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "Authorization_code",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "Authorization code for receiving an access token. "
+                }, {
+                    "name": "apikey",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "You&#39;re apikey. "
+                }, {
+                    "name": "tenant",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Tenant to connect to. "
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Response with acces_token &amp; expire information ",
+                        "schema": {
+                            "$ref": "#/definitions/MembersAuth200Token"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "412": {
+                        "description": "Precondition failed ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/1.0.0/members/auth/{type?}success_redirect={success_redirect}": {
+            "get": {
+                "tags": ["Members_Auth"],
+                "description": "Login call",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "name": "type",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "Login type (eg. &#39;aprofiel&#39;, &#39;mprofiel&#39;). "
+                }, {
+                    "name": "success_redirect",
+                    "in": "path",
+                    "required": true,
+                    "type": "string",
+                    "description": "Url to redirect to if login succeeded (this url will also be used if no &#39;error_redirect&#39; param is passed). "
+                }, {
+                    "name": "error_redirect",
+                    "in": "path",
+                    "required": false,
+                    "type": "string",
+                    "description": "Url to redirect to if login failed. "
+                }, {
+                    "name": "username",
+                    "in": "path",
+                    "required": false,
+                    "type": "string",
+                    "description": "Username for local login. "
+                }, {
+                    "name": "password",
+                    "in": "path",
+                    "required": false,
+                    "type": "string",
+                    "description": "Password for local login (Needs to be encrypted with SHA256!). "
+                }, {
+                    "name": "apikey",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "You&#39;re apikey. "
+                }, {
+                    "name": "tenant",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "description": "Tenant to connect to. "
+                }],
+                "responses": {
+                    "302": {
+                        "description": "Redirect to oAuth login or error callback "
+                    },
+                    "412": {
+                        "description": "Precondition failed ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/1.0.0/members/auth/{type}": {
+            "post": {
+                "tags": ["Members_Auth"],
+                "description": "Register user",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Member (Not all params are required depending on the type) ",
+                    "required": true,
+                    "schema": {
+                        "$ref": "#/definitions/memberBodyParam"
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Register Response ",
+                        "schema": {
+                            "$ref": "#/definitions/MembersAuth200Register"
+                        }
+                    },
+                    "204": {
+                        "description": "Empty response "
+                    },
+                    "400": {
+                        "description": "Bad Request ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "412": {
+                        "description": "Precondition failed ",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Error": {
+            "type": "object",
+            "description": "Error response object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "description": "Link to Error page. "
+                },
+                "title": {
+                    "type": "string",
+                    "description": "Title of the error. "
+                },
+                "status": {
+                    "type": "string",
+                    "description": "HTTP status code. "
+                },
+                "identifier": {
+                    "type": "string",
+                    "description": "Unique ID as logged in the database. "
+                },
+                "code": {
+                    "type": "string",
+                    "description": "Error type code. "
+                }
+            },
+            "required": ["type", "title", "status", "identifier", "code"]
+        },
+        "Members200One": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "description": "Mongo _id"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "Member uuid"
+                },
+                "data": {
+                    "$ref": "#/definitions/Members200One.data"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Members200One.meta"
+                }
+            },
+            "required": ["_id", "uuid", "data", "meta"]
+        },
+        "Members200One.data": {
+            "properties": {
+                "external_id": {
+                    "type": "string",
+                    "description": "of member"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username of the member"
+                },
+                "firstName": {
+                    "type": "string",
+                    "description": "First name of the member"
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "Last name of the member"
+                },
+                "fullName": {
+                    "type": "string",
+                    "description": "Full name of the member"
+                },
+                "avatarUrl": {
+                    "type": "string",
+                    "description": "Avatar URL"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "Phone number"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address"
+                }
+            },
+            "required": ["external_id", "username", "firstName", "lastName", "fullName", "avatarUrl", "phone", "email"]
+        },
+        "Members200One.meta": {
+            "properties": {
+                "created": {
+                    "type": "string",
+                    "description": "Created at"
+                },
+                "lastModified": {
+                    "type": "string",
+                    "description": "Last modified at"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of login source"
+                },
+                "enabled": {
+                    "type": "string",
+                    "description": "Member has accessToken"
+                },
+                "token": {
+                    "$ref": "#/definitions/Members200One.meta.token"
+                }
+            },
+            "required": ["created", "lastModified", "type", "enabled", "token"]
+        },
+        "Members200One.meta.token": {
+            "properties": {
+                "expires": {
+                    "type": "string",
+                    "description": "Token expires date."
+                }
+            },
+            "required": ["expires"]
+        },
+        "meta": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "string",
+                    "description": "Set member enabled / disabled"
+                }
+            },
+            "required": ["enabled"]
+        },
+        "Members200Update": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "description": "Mongo _id"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "Member uuid"
+                },
+                "data": {
+                    "$ref": "#/definitions/Members200Update.data"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Members200Update.meta"
+                }
+            },
+            "required": ["_id", "uuid", "data", "meta"]
+        },
+        "Members200Update.data": {
+            "properties": {
+                "external_id": {
+                    "type": "string",
+                    "description": "of member"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username of the member"
+                },
+                "firstName": {
+                    "type": "string",
+                    "description": "First name of the member"
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "Last name of the member"
+                },
+                "fullName": {
+                    "type": "string",
+                    "description": "Full name of the member"
+                },
+                "avatarUrl": {
+                    "type": "string",
+                    "description": "Avatar URL"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "Phone number"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address"
+                }
+            },
+            "required": ["external_id", "username", "firstName", "lastName", "fullName", "avatarUrl", "phone", "email"]
+        },
+        "Members200Update.meta": {
+            "properties": {
+                "created": {
+                    "type": "string",
+                    "description": "Created at"
+                },
+                "lastModified": {
+                    "type": "string",
+                    "description": "Last modified at"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of login source"
+                },
+                "enabled": {
+                    "type": "string",
+                    "description": "Member has accessToken"
+                },
+                "token": {
+                    "$ref": "#/definitions/Members200Update.meta.token"
+                }
+            },
+            "required": ["created", "lastModified", "type", "enabled", "token"]
+        },
+        "Members200Update.meta.token": {
+            "properties": {
+                "expires": {
+                    "type": "string",
+                    "description": "Token expires date."
+                }
+            },
+            "required": ["expires"]
+        },
+        "Members200All": {
+            "properties": {
+                "_id": {
+                    "type": "string",
+                    "description": "Mongo _id"
+                },
+                "uuid": {
+                    "type": "string",
+                    "description": "Member uuid"
+                },
+                "data": {
+                    "$ref": "#/definitions/Members200All.data"
+                },
+                "meta": {
+                    "$ref": "#/definitions/Members200All.meta"
+                }
+            },
+            "required": ["_id", "uuid", "data", "meta"]
+        },
+        "Members200All.data": {
+            "properties": {
+                "external_id": {
+                    "type": "string",
+                    "description": "of member"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username of the member"
+                },
+                "firstName": {
+                    "type": "string",
+                    "description": "First name of the member"
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "Last name of the member"
+                },
+                "fullName": {
+                    "type": "string",
+                    "description": "Full name of the member"
+                },
+                "avatarUrl": {
+                    "type": "string",
+                    "description": "Avatar URL"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "Phone number"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address"
+                }
+            },
+            "required": ["external_id", "username", "firstName", "lastName", "fullName", "avatarUrl", "phone", "email"]
+        },
+        "Members200All.meta": {
+            "properties": {
+                "created": {
+                    "type": "string",
+                    "description": "Created at"
+                },
+                "lastModified": {
+                    "type": "string",
+                    "description": "Last modified at"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Type of login source"
+                },
+                "enabled": {
+                    "type": "string",
+                    "description": "Member has accessToken"
+                },
+                "token": {
+                    "$ref": "#/definitions/Members200All.meta.token"
+                }
+            },
+            "required": ["created", "lastModified", "type", "enabled", "token"]
+        },
+        "Members200All.meta.token": {
+            "properties": {
+                "expires": {
+                    "type": "string",
+                    "description": "Token expires date."
+                }
+            },
+            "required": ["expires"]
+        },
+        "Members200Profile": {
+            "type": "object",
+            "properties": {
+                "uuid": {
+                    "type": "string",
+                    "description": "Member uuid"
+                },
+                "data": {
+                    "$ref": "#/definitions/Members200Profile.data"
+                }
+            },
+            "required": ["uuid", "data"]
+        },
+        "Members200Profile.data": {
+            "properties": {
+                "external_id": {
+                    "type": "string",
+                    "description": "of member"
+                },
+                "username": {
+                    "type": "string",
+                    "description": "Username of the member"
+                },
+                "firstName": {
+                    "type": "string",
+                    "description": "First name of the member"
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "Last name of the member"
+                },
+                "fullName": {
+                    "type": "string",
+                    "description": "Full name of the member"
+                },
+                "avatarUrl": {
+                    "type": "string",
+                    "description": "Avatar URL"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "Phone number"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address"
+                }
+            },
+            "required": ["external_id", "username", "firstName", "lastName", "fullName", "avatarUrl", "phone", "email"]
+        },
+        "MembersAuth200Token": {
+            "type": "object",
+            "properties": {
+                "acces_token": {
+                    "type": "string",
+                    "description": "Token to be used when requesting user specific data."
+                },
+                "expires": {
+                    "type": "string",
+                    "description": "Expiration datetime of access_token."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Owner (service type) of the acces_token."
+                }
+            },
+            "required": ["acces_token", "expires", "type"]
+        },
+        "GetApi100MembersAuthTypeSuccess_redirectSuccess_redirect": {
+            "properties": {
+                "authorization_code": {
+                    "type": "string",
+                    "description": "Authorization code to get api token."
+                }
+            },
+            "required": ["authorization_code"]
+        },
+        "memberBodyParam": {
+            "type": "object",
+            "properties": {
+                "username": {
+                    "type": "string",
+                    "description": "Member username"
+                },
+                "firstName": {
+                    "type": "string",
+                    "description": "Member first name"
+                },
+                "lastName": {
+                    "type": "string",
+                    "description": "Member last name"
+                },
+                "fullName": {
+                    "type": "string",
+                    "description": "Member full name (optional)"
+                },
+                "avatarUrl": {
+                    "type": "string",
+                    "description": "Member avatar url (optional)"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "Member phone number (optional)"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Member email"
+                }
+            },
+            "required": ["username", "firstName", "lastName", "fullName", "avatarUrl", "phone", "email"]
+        },
+        "MembersAuth200Register": {
+            "type": "object",
+            "properties": {
+                "authorization_code": {
+                    "type": "string",
+                    "description": "The authorization code to get the token."
+                }
+            },
+            "required": ["authorization_code"]
+        }
+    }
+}

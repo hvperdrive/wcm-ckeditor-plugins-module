@@ -1,0 +1,43 @@
+{
+    "name": "ckeditor-plugins",
+    "version": "0.0.24",
+    "description": "CKEditor plugins for AM",
+    "main": "index.js",
+    "scripts": {},
+    "keywords": [
+        "test"
+    ],
+    "wcmModule": {
+        "frontend": {
+            "dirPath": "public/app/",
+            "assetsDirPath": "public/assets/",
+            "cssDirPath": "public/assets/css/",
+            "moduleConfig": {
+                "translationKey": "ckeditor-plugins",
+                "navigationItem": false,
+                "authentication": {
+                    "requiresLogin": false
+                }
+            }
+        },
+        "backend": {
+            "dirPath": "app/",
+            "routeDirPaths": [
+                "app/"
+            ]
+        }
+    },
+    "author": "Jeroen Valcke",
+    "license": "ISC",
+    "dependencies": {},
+    "devDependencies": {
+        "gulp": "~3.9.1",
+        "gulp-angular-templatecache": "~2.0.0",
+        "gulp-apidoc": "~0.2.0",
+        "gulp-apidoc-swagger": "~0.2.2",
+        "gulp-clean": "~0.3.2",
+        "gulp-replace": "~0.5.4",
+        "gulp-zip": "~3.2.0",
+        "run-sequence": "~1.2.2"
+    }
+}
