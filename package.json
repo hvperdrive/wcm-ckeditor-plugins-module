@@ -1,6 +1,6 @@
 {
     "name": "ckeditor-plugins",
-    "version": "0.0.24",
+    "version": "0.0.50",
     "description": "CKEditor plugins for AM",
     "main": "index.js",
     "scripts": {},

@@ -1,0 +1,8 @@
+.wcm-video[style*="float: left"],
+.wcm-video[style*="float:left"] {
+    margin-right: 15px;
+}
+.wcm-video[style*="float: right"],
+.wcm-video[style*="float:right"] {
+    margin-left: 15px;
+}

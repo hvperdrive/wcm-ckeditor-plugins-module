@@ -1,12 +1,12 @@
 'use strict';
 
-angular.module('ckeditor-plugins_0.0.24')
+angular.module('ckeditor-plugins_0.0.50')
     .provider('CKEditorConfig', [
         function membersConfig() {
 
             this.API = {
                 name: 'ckeditor-plugins',
-                version: '0.0.24',
+                version: '0.0.50',
                 basePath: 'app/modules/',
                 assetsBasePath: '/assets/modules/'
             };

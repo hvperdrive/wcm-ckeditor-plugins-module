@@ -1,4 +1,4 @@
-angular.module('ckeditor-plugins_0.0.24')
+angular.module('ckeditor-plugins_0.0.50')
     .directive('imageSlider', [
         'CKEditorConfig',
 
