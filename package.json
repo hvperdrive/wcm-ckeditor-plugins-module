@@ -1,6 +1,6 @@
 {
     "name": "ckeditor-plugins",
-    "version": "0.0.50",
+    "version": "0.0.52",
     "description": "CKEditor plugins for AM",
     "main": "index.js",
     "scripts": {},
@@ -31,6 +31,7 @@
     "license": "ISC",
     "dependencies": {},
     "devDependencies": {
+        "@district01/eslint-config": "~1.0.0",
         "gulp": "~3.9.1",
         "gulp-angular-templatecache": "~2.0.0",
         "gulp-apidoc": "~0.2.0",

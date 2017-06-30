@@ -1,37 +1,37 @@
-'use strict';
+"use strict";
 
 (function() {
-    angular.module('ckeditor-plugins_0.0.50')
-        .provider('ckeditorPlugins', [
+	angular.module("ckeditor-plugins_0.0.52")
+        .provider("ckeditorPlugins", [
 
-            '$provide',
+	"$provide",
 
-            function ckeditorPluginsProvider($provide) {
+	function ckeditorPluginsProvider($provide) {
 
-                var registerAll = function registerAll(cb) {
-                    $provide.decorator('ckeditorService', [
+		var registerAll = function registerAll() {
+			$provide.decorator("ckeditorService", [
 
-                        '$delegate',
-                        'ckeditorPluginModuleDefinitions',
+				"$delegate",
+				"ckeditorPluginModuleDefinitions",
 
-                        function(ckeditorService, ckeditorPluginModuleDefinitions) {
-                            _.forEach(ckeditorPluginModuleDefinitions, function(plugin, name) {
-                                ckeditorService.activatePlugin(name, plugin.plugin, plugin.meta);
-                            });
+				function(ckeditorService, ckeditorPluginModuleDefinitions) {
+					_.forEach(ckeditorPluginModuleDefinitions, function(plugin, name) {
+						ckeditorService.activatePlugin(name, plugin.plugin, plugin.meta);
+					});
 
-                            return ckeditorService;
-                        }
-                    ]);
-                };
+					return ckeditorService;
+				},
+			]);
+		};
 
-                this.controls = {
-                    registerAll: registerAll
-                };
+		this.controls = {
+			registerAll: registerAll,
+		};
 
-                this.$get = function get() {
-                    return this.controls;
-                };
+		this.$get = function get() {
+			return this.controls;
+		};
 
-            }
-        ]);
+	},
+]);
 })();
