@@ -1,13 +1,13 @@
 "use-strict";
 
 (function() {
-	angular.module("ckeditor-plugins_0.0.53")
+	angular.module("ckeditor-plugins_0.0.54")
 		.factory("ckeditorPluginImageUpload", [
 
 			"CKEditorConfig",
 			"DialogService",
 
-			function ckeditorPluginModuleDefinitions(
+			function ckeditorPluginImageUpload(
 				CKEditorConfig,
 				DialogService
 			) {

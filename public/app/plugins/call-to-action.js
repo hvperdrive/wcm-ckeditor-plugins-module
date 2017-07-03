@@ -1,12 +1,12 @@
 "use-strict";
 
 (function(CKEDITOR) {
-	angular.module("ckeditor-plugins_0.0.53")
+	angular.module("ckeditor-plugins_0.0.54")
 		.factory("ckeditorPluginCallToAction", [
 
 			"CKEditorConfig",
 
-			function ckeditorPluginModuleDefinitions(CKEditorConfig) {
+			function ckeditorPluginCallToAction(CKEditorConfig) {
 				return {
 					meta: {
 						toolbar: [{

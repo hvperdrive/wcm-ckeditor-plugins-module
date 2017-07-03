@@ -1,12 +1,12 @@
 "use-strict";
 
 (function() {
-	angular.module("ckeditor-plugins_0.0.53")
+	angular.module("ckeditor-plugins_0.0.54")
 		.factory("ckeditorPluginPublicTransportPicker", [
 
 			"CKEditorConfigService",
 
-			function ckeditorPluginModuleDefinitions(CKEditorConfigService) {
+			function ckeditorPluginPublicTransportPicker(CKEditorConfigService) {
 				return {
 					meta: {
 						toolbar: [{

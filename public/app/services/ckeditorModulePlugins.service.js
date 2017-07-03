@@ -1,8 +1,8 @@
 "use-strict";
 
 (function() {
-	angular.module("ckeditor-plugins_0.0.53")
-		.service("ckeditorPluginModuleDefinitions", [
+	angular.module("ckeditor-plugins_0.0.54")
+		.service("ckeditorPluginDefinitions", [
 
 			"DialogService",
 			"CKEditorConfig",
@@ -13,7 +13,7 @@
 			"ckeditorPluginFileUpload",
 			"ckeditorPluginVideoDialog",
 
-			function ckeditorPluginModuleDefinitions(
+			function ckeditorPluginDefinitions(
 				DialogService,
 				CKEditorConfig,
 				ckeditorPluginCallToAction,
