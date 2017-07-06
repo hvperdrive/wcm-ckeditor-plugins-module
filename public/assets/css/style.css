@@ -241,17 +241,32 @@ span.redMarker {
 	margin-right: .75rem;
 }
 
-.wcm-changelog__status--NEW {
+.wcm-changelog__status--added {
 	border: 1px solid #4aa32c;
 	color: #4aa32c;
 }
 
-.wcm-changelog__status--IMPROVED {
+.wcm-changelog__status--changed {
 	border: 1px solid #da291c;
 	color: #da291c;
 }
 
-.wcm-changelog__status--FIXED {
+.wcm-changelog__status--deprecated {
+	border: 1px solid #b0b0b0;
+	color: #b0b0b0;
+}
+
+.wcm-changelog__status--removed {
+	border: 1px solid #cf0039;
+	color: #cf0039;
+}
+
+.wcm-changelog__status--security {
+	border: 1px solid #4aa32c;
+	color: #4aa32c;
+}
+
+.wcm-changelog__status--fixed {
 	border: 1px solid #0064b4;
 	color: #0064b4;
 }
