@@ -74,11 +74,11 @@
 											templateUrl: CKEditorConfig.modulePath + "templates/changelogModal.tpl.html",
 											data: newData,
 											controller: ["$scope", function($scope) {
-												$scope.statuses = ["NEW", "IMPROVED", "FIXED"];
+												$scope.statuses = ["added", "changed", "deprecated", "removed", "fixed", "security"];
 
 												$scope.addEntry = function() {
 													$scope.ngDialogData.entries.push({
-														status: "NEW",
+														status: "added",
 														message: "New entry",
 													});
 												};

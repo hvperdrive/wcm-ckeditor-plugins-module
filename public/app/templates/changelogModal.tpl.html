@@ -3,7 +3,7 @@
         <div class="c-input_inner has-icon caret-down">
             <label class="c-label" for="status-${{index}}" translate>Status</label>
             <div class="select-wrapper">
-                <select class="c-input-select c-input-select--sm" name="status-${{index}}" ng-model="entry.status" required="true" ng-options="status for status in statuses track by status">
+                <select class="c-input-select c-input-select--sm" name="status-${{index}}" ng-model="entry.status" required="true" ng-options="status | uppercase for status in statuses track by status">
                 </select>
             </div>
         </div>
