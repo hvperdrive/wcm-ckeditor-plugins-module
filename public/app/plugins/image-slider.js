@@ -4,11 +4,11 @@
 	angular.module("ckeditor-plugins_0.0.55")
 		.factory("ckeditorPluginImageSlider", [
 
-			"CKEditorConfig",
+			"CKEditorConfigPack",
 			"DialogService",
 
 			function ckeditorPluginImageSlider(
-				CKEditorConfig,
+				CKEditorConfigPack,
 				DialogService
 			) {
 				return {
@@ -43,7 +43,7 @@
 								template: [
 									"<div class=\"wcm-slider\">",
 										"<div class=\"wcm-slider__images\">", // eslint-disable-line
-											"<div class=\"wcm-slider__slide\" data-placeholder=\"true\" style=\"background-image: url('/assets/modules/" + CKEditorConfig.name + "_" + CKEditorConfig.version + "/img/image.png');\"></div>", // eslint-disable-line
+											"<div class=\"wcm-slider__slide\" data-placeholder=\"true\" style=\"background-image: url('/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/img/image.png');\"></div>", // eslint-disable-line
 										"</div>", // eslint-disable-line
 									"</div>",
 
@@ -94,7 +94,7 @@
 									widget.on("edit", function() {
 										newData = angular.copy(data);
 										DialogService.openModal({
-											templateUrl: CKEditorConfig.modulePath + "templates/sliderModal.tpl.html",
+											templateUrl: CKEditorConfigPack.modulePath + "templates/sliderModal.tpl.html",
 											data: newData,
 										}).then(function() {
 											widget.setData("images", newData.images);
@@ -109,7 +109,7 @@
 								label: "Add an image slider",
 								command: "imageSlider",
 								toolbar: "insert",
-								icon: "/assets/modules/" + CKEditorConfig.name + "_" + CKEditorConfig.version + "/img/slider.png",
+								icon: "/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/img/slider.png",
 								hidpi: true,
 							});
 						}

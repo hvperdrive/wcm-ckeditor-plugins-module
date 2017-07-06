@@ -4,16 +4,16 @@
 	angular.module("ckeditor-plugins_0.0.55")
 		.factory("ckeditorPluginCallToAction", [
 
-			"CKEditorConfig",
+			"CKEditorConfigPack",
 
-			function ckeditorPluginCallToAction(CKEditorConfig) {
+			function ckeditorPluginCallToAction(CKEditorConfigPack) {
 				return {
 					meta: {
 						toolbar: [{
 							name: "insert",
-							items: ["callToAction"]
+							items: ["callToAction"],
 						}],
-						extraPlugins: "callToAction"
+						extraPlugins: "callToAction",
 					},
 					plugin: {
 						init: function(editor) {
@@ -112,11 +112,11 @@
 								label: "Add a Call to Action item",
 								command: "callToAction",
 								toolbar: "insert",
-								icon: "/assets/modules/" + CKEditorConfig.name + "_" + CKEditorConfig.version + "/img/cta.png",
+								icon: "/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/img/cta.png",
 								hidpi: true,
 							});
 
-							editor.addContentsCss("/assets/modules/" + CKEditorConfig.name + "_" + CKEditorConfig.version + "/css/style.css");
+							editor.addContentsCss("/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/css/style.css");
 						},
 					},
 				};
