@@ -62,7 +62,7 @@
 
 										data.entries.push({
 											status: entry.getAttribute("data-status"),
-											message: entry.getText(),
+											message: entry.getChild(1).getText(),
 										});
 									}
 
