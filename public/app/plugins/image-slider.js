@@ -102,7 +102,7 @@
 											editor.fire("change");
 										});
 									});
-								}
+								},
 							});
 
 							editor.ui.addButton("imageSlider", {
