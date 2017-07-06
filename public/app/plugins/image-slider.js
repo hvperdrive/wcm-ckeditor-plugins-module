@@ -1,7 +1,7 @@
 "use-strict";
 
 (function() {
-	angular.module("ckeditor-plugins_0.0.54")
+	angular.module("ckeditor-plugins_0.0.55")
 		.factory("ckeditorPluginImageSlider", [
 
 			"CKEditorConfig",
