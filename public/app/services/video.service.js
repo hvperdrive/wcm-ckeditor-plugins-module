@@ -2,12 +2,12 @@
 
 (function(CKEDITOR) {
 	angular.module("ckeditor-plugins_0.0.55")
-		.service("UtilsService", [
+		.service("VideoService", [
 
-			function UtilsService() {
-				var utils = {};
+			function VideoService() {
+				var API = {};
 
-				utils.calculateAndPositionMask = function calculateAndPositionMask(self) {
+				API.calculateAndPositionMask = function calculateAndPositionMask(self) {
 					// Get mask
 					var mask = self.wrapper.getChild(1);
 
@@ -44,7 +44,7 @@
 					}
 				};
 
-				utils.getFocusedWidget = function getFocusedWidget(editor, type) {
+				API.getFocusedWidget = function getFocusedWidget(editor, type) {
 					var widget = editor.widgets.focused;
 
 					if (widget && widget.name === type) {
@@ -54,7 +54,7 @@
 					return null;
 				};
 
-				utils.alignCommandIntegrator = function alignCommandIntegrator(editor, type) {
+				API.alignCommandIntegrator = function alignCommandIntegrator(editor, type) {
 					var execCallbacks = [];
 
 					return function(value) {
@@ -77,7 +77,7 @@
 							center: 1,
 						}) {
 							command.on("exec", function(evt) {
-								var widget = utils.getFocusedWidget(editor, type);
+								var widget = API.getFocusedWidget(editor, type);
 
 								if (widget) {
 									widget.setData("align", value);
@@ -94,7 +94,7 @@
 						}
 
 						command.on("refresh", function(evt) {
-							var widget = utils.getFocusedWidget(editor, type);
+							var widget = API.getFocusedWidget(editor, type);
 							var allowed = {
 								right: 1,
 								left: 1,
@@ -118,14 +118,14 @@
 					};
 				};
 
-				utils.getVideoSource = function(fromUrl) {
+				API.getVideoSource = function(fromUrl) {
 					var isAlreadyParseRegExp = /^(https:\/\/www\.youtube\.com\/embed\/|https:\/\/player\.vimeo\.com\/video\/|https:\/\/www\.dailymotion\.com\/embed\/video\/).*$/;
 
 					if (fromUrl.match(isAlreadyParseRegExp)) {
 						return fromUrl;
 					}
 
-					var respuesta = utils.detectar(fromUrl);
+					var respuesta = API.detectar(fromUrl);
 
 					if (respuesta.reproductor === "youtube") {
 						return "https://www.youtube.com/embed/" + respuesta.id_video + "?autohide=1&controls=1&showinfo=0";
@@ -141,7 +141,7 @@
 				};
 
 				// Functionality copied from from ckeditor video plugin
-				utils.detectar = function(url) {
+				API.detectar = function(url) {
 					var id = "";
 					var reproductor = "";
 					var url_comprobar = ""; // eslint-disable-line
@@ -201,7 +201,7 @@
 					};
 				};
 
-				return utils;
+				return API;
 			},
 		]);
 })(window.CKEDITOR);

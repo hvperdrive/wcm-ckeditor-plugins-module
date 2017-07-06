@@ -4,12 +4,12 @@
 	angular.module("ckeditor-plugins_0.0.55")
 		.factory("ckeditorPluginVideoDialog", [
 
-			"CKEditorConfig",
-			"UtilsService",
+			"CKEditorConfigPack",
+			"VideoService",
 
 			function ckeditorPluginVideoDialog(
 				CKEditorConfig,
-				UtilsService
+				VideoService
 			) {
 				return {
 					meta: {
@@ -27,9 +27,9 @@
 								left: 1,
 								right: 1,
 								center: 1,
-								block: 1
+								block: 1,
 							};
-							var integrate = UtilsService.alignCommandIntegrator(editor, "videoDialog");
+							var integrate = VideoService.alignCommandIntegrator(editor, "videoDialog");
 
 							for (var value in align) {
 								integrate(value);
@@ -37,7 +37,7 @@
 						},
 						init: function(editor) {
 
-							CKEDITOR.dialog.add("videoDialog", function () {
+							CKEDITOR.dialog.add("videoDialog", function() {
 								return {
 									title: "Insert a Youtube, Vimeo, Dailymotion URL or embed code",
 									minWidth: 400,
@@ -108,7 +108,7 @@
 								},
 								downcast: function () {
 									var vid = this.element.getChild(0);
-									var src = UtilsService.getVideoSource(this.data.url_video);
+									var src = VideoService.getVideoSource(this.data.url_video);
 
 									vid.setAttribute("src", src);
 
@@ -117,7 +117,7 @@
 										"padding-bottom": (56.25 * (this.data.width || 100) / 100) + "%",
 									});
 
-									UtilsService.calculateAndPositionMask(this);
+									VideoService.calculateAndPositionMask(this);
 								},
 								init: function() {
 									var vid = this.element.getChild(0);
@@ -145,14 +145,13 @@
 									});
 								},
 								data: function() {
-									UtilsService.calculateAndPositionMask(this);
+									VideoService.calculateAndPositionMask(this);
 								},
 								styleableElements: "div",
 								mask: true,
 								dialog: "videoDialog",
 							});
 
-							// editor.addCommand("videodetector", new CKEDITOR.dialogCommand("videoDialog"));
 							editor.ui.addButton("videoDialog", {
 								label: "Insert a Youtube, Vimeo or Dailymotion video",
 								command: "videoDialog",
