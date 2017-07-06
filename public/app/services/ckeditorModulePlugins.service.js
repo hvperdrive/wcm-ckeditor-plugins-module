@@ -12,6 +12,7 @@
 			"ckeditorPluginPublicTransportPicker",
 			"ckeditorPluginFileUpload",
 			"ckeditorPluginVideoDialog",
+			"ckeditorPluginChangelog",
 
 			function ckeditorPluginDefinitions(
 				DialogService,
@@ -21,7 +22,8 @@
 				ckeditorPluginClassApplier,
 				ckeditorPluginPublicTransportPicker,
 				ckeditorPluginFileUpload,
-				ckeditorPluginVideoDialog
+				ckeditorPluginVideoDialog,
+				ckeditorPluginChangelog
 			) {
 				var plugins = {};
 
@@ -31,6 +33,7 @@
 				plugins.publicTransportPicker = ckeditorPluginPublicTransportPicker;
 				plugins.fileUpload = ckeditorPluginFileUpload;
 				plugins.videoDialog = ckeditorPluginVideoDialog;
+				plugins.changelog = ckeditorPluginChangelog;
 
 				return plugins;
 			},

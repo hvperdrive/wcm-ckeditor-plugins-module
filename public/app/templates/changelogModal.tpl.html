@@ -1,0 +1,32 @@
+<div ng-repeat="entry in ngDialogData.entries" class="u-clear wcm-changelog-entryform">
+    <div class="c-input u-width-2-6 fl wcm-changelog-entryform__status">
+        <div class="c-input_inner has-icon caret-down">
+            <label class="c-label" for="status-${{index}}" translate>Status</label>
+            <div class="select-wrapper">
+                <select class="c-input-select c-input-select--sm" name="status-${{index}}" ng-model="entry.status" required="true" ng-options="status for status in statuses track by status">
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <field class="u-width-4-6 fl wcm-changelog-entryform__message" label="'Entry message' | translate" name="message-{{$id}}"
+        type="'text'" model="entry.message" required="true" placeholder="'New entry' | translate">
+    </field>
+
+    <button class="wcm-changelog-entryform__remove c-button c-button--sm c-button--error c-button--icon c-button--delete" ng-click="removeEntry($index)" title="{{'Remove entry' | translate}}">
+        <span class="fa fa-trash-o"></span>
+    </button>
+</div>
+
+<div ng-if="!ngDialogData.entries.length">
+    <p>No entries were added yet.</p>
+</div>
+
+<div>
+    <button class="c-button c-button--alpha c-button--sm" ng-click="addEntry()">add entry</button>
+</div>
+
+<div class="c-buttonGroup">
+    <button ng-click="closeThisDialog()" class="c-button c-button--alpha c-button--sm c-button--floatLeft" translate>cancel</button>
+    <button ng-click="confirm()" class="c-button c-button--error c-button--sm c-button--floatRight" translate>confirm</button>
+</div>
