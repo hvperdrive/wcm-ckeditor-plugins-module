@@ -2,7 +2,7 @@
 
 (function(CKEDITOR) {
 
-	angular.module("ckeditor-plugins_0.0.52")
+	angular.module("ckeditor-plugins_0.0.53")
         .service("ckeditorPluginModuleDefinitions", [
 
 	"DialogService",
@@ -68,6 +68,18 @@
 										widget.setData("url", this.getValue());
 									},
 								}, {
+									type: "select",
+									id: "target",
+									label: "Target",
+									items: [["Self (default)", "_self"], ["Blank", "_blank"]],
+									default: "_self",
+									setup: function(widget) {
+										this.setValue(widget.data.target);
+									},
+									commit: function(widget) {
+										widget.setData("target", this.getValue());
+									},
+								}, {
 									type: "text",
 									id: "description",
 									label: "Description",
@@ -86,7 +98,7 @@
 						template: [
 							"<div class=\"wcm-cta\">",
                                         "<h3 class=\"wcm-cta__title\">Title</h3>", // eslint-disable-line
-                                        "<a class=\"wcm-cta__action\" href=\"href\" title=\"description\">Call to Action</a>", // eslint-disable-line
+                                        "<a class=\"wcm-cta__action\" href=\"href\" target=\"_self\" title=\"description\">Call to Action</a>", // eslint-disable-line
 							"</div>",
 
 						].join(""),
@@ -101,6 +113,7 @@
 							cta.setText(this.data.label);
 							cta.setAttribute("href", this.data.url);
 							cta.setAttribute("title", this.data.description);
+							cta.setAttribute("target", this.data.target);
 						},
 						init: function() {
 							var title = this.element.getChild(0);
@@ -110,6 +123,7 @@
 							this.setData("label", cta.getText());
 							this.setData("url", cta.getAttribute("href"));
 							this.setData("description", cta.getAttribute("title"));
+							this.setData("target", cta.getAttribute("target"));
 						},
 						dialog: "callToAction",
 					});
