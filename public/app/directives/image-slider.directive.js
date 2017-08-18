@@ -1,34 +1,34 @@
 "use strict";
 
-angular.module("ckeditor-plugins_0.0.53")
-    .directive("imageSlider", [
-	"CKEditorConfig",
+angular.module("ckeditor-plugins_0.0.57")
+	.directive("imageSlider", [
+		"CKEditorConfigPack",
 
-	function(CKEditorConfig) {
-		return {
-			templateUrl: CKEditorConfig.modulePath + "/directives/image-slider.html",
-			replace: true,
-			restrict: "E",
-			scope: {
-				images: "=",
-			},
-			link: function($scope, $el) {
-				$scope.assetsPath = CKEditorConfig.assetsPath;
+		function(CKEditorConfigPack) {
+			return {
+				templateUrl: CKEditorConfigPack.modulePath + "/directives/image-slider.html",
+				replace: true,
+				restrict: "E",
+				scope: {
+					images: "=",
+				},
+				link: function($scope) {
+					$scope.assetsPath = CKEditorConfigPack.assetsPath;
 
-				$scope.addImage = function addImage() {
-					$scope.images.push({
-						src: "",
-					});
-				};
+					$scope.addImage = function addImage() {
+						$scope.images.push({
+							src: "",
+						});
+					};
 
-				$scope.removeImage = function removeImage(index) {
-					$scope.images.splice(index, 1);
-				};
+					$scope.removeImage = function removeImage(index) {
+						$scope.images.splice(index, 1);
+					};
 
-				$scope.moveImage = function moveImage(index, factor) {
-					$scope.images.splice(index + factor, 0, $scope.images.splice(index, 1)[0]);
-				};
-			},
-		};
-	},
-]);
+					$scope.moveImage = function moveImage(index, factor) {
+						$scope.images.splice(index + factor, 0, $scope.images.splice(index, 1)[0]);
+					};
+				},
+			};
+		},
+	]);
