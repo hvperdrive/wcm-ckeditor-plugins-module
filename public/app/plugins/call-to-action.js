@@ -1,12 +1,32 @@
 "use-strict";
 
 (function(CKEDITOR) {
-	angular.module("ckeditor-plugins_0.0.57")
+	angular.module("ckeditor-plugins_0.0.58")
 		.factory("ckeditorPluginCallToAction", [
 
 			"CKEditorConfigPack",
 
 			function ckeditorPluginCallToAction(CKEditorConfigPack) {
+				function getProtocolFromHref(href) {
+					if (!href || href.indexOf(":") < 0) {
+						return "";
+					}
+
+					var matches = href.match(/^.*:\/\/|mailto/);
+
+					return matches && matches.length ? matches[0] : "";
+				}
+
+				function getUrlFromHref(href) {
+					if (!href) {
+						return "";
+					}
+
+					var matches = href.match(/(^.*:\/\/|mailto)(.*)/);
+
+					return matches && matches.length ? matches[2] : href;
+				}
+
 				return {
 					meta: {
 						toolbar: [{
@@ -52,6 +72,39 @@
 												widget.setData("label", this.getValue());
 											},
 										}, {
+											type: "select",
+											id: "protocol",
+											label: "Protocol",
+											default: "",
+											items: [
+												[ "local", "" ],
+												["https://"],
+												["http://"],
+												["mailto:"],
+											],
+											setup: function(widget) {
+												this.setValue(widget.data.protocol);
+											},
+											commit: function(widget) {
+												widget.setData("protocol", this.getValue());
+											},
+										}, {
+											type: "select",
+											id: "target",
+											label: "Target",
+											validate: CKEDITOR.dialog.validate.notEmpty("Target cannot be empty!"),
+											default: "_self",
+											items: [
+												["Self (default)", "_self"],
+												["Blank", "_blank"],
+											],
+											setup: function(widget) {
+												this.setValue(widget.data.target);
+											},
+											commit: function(widget) {
+												widget.setData("target", this.getValue());
+											},
+										}, {
 											type: "text",
 											id: "url",
 											label: "Url",
@@ -63,19 +116,8 @@
 												widget.setData("url", this.getValue());
 											},
 										}, {
-											type: "select",
-											id: "target",
-											label: "Target",
-											items: [["Self (default)", "_self"], ["Blank", "_blank"]],
-											default: "_self",
-											setup: function(widget) {
-												this.setValue(widget.data.target);
-											},
-											commit: function(widget) {
-												widget.setData("target", this.getValue());
-											},
-										}, {
-											type: "text",
+											type: "textarea",
+											inputStyle: "min-height: 75px",
 											id: "description",
 											label: "Description",
 											setup: function(widget) {
@@ -92,8 +134,8 @@
 							editor.widgets.add("callToAction", {
 								template: [
 									"<div class=\"wcm-cta\">",
-										"<h3 class=\"wcm-cta__title\">Title</h3>", // eslint-disable-line
-										"<a class=\"wcm-cta__action\" href=\"href\" target=\"_self\" title=\"description\">Call to Action</a>", // eslint-disable-line
+									"<h3 class=\"wcm-cta__title\">Title</h3>", // eslint-disable-line
+									"<a class=\"wcm-cta__action\" href=\"href\" title=\"description\" target=\"_self\">Call to Action</a>", // eslint-disable-line
 									"</div>",
 								].join(""),
 								upcast: function(el) {
@@ -105,7 +147,7 @@
 
 									title.setText(this.data.title);
 									cta.setText(this.data.label);
-									cta.setAttribute("href", this.data.url);
+									cta.setAttribute("href", this.data.protocol + this.data.url);
 									cta.setAttribute("title", this.data.description);
 									cta.setAttribute("target", this.data.target);
 								},
@@ -115,9 +157,10 @@
 
 									this.setData("title", title.getText());
 									this.setData("label", cta.getText());
-									this.setData("url", cta.getAttribute("href"));
-									this.setData("description", cta.getAttribute("title"));
-									this.setData("target", cta.getAttribute("target"));
+									this.setData("url", getUrlFromHref(cta.getAttribute("href")));
+									this.setData("protocol", getProtocolFromHref(cta.getAttribute("href")));
+									this.setData("description", cta.getAttribute("title") || "");
+									this.setData("target", cta.getAttribute("target") || "_self");
 								},
 								dialog: "callToAction",
 							});
