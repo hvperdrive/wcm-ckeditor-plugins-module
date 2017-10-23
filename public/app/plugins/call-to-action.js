@@ -9,7 +9,7 @@
 			function ckeditorPluginCallToAction(CKEditorConfigPack) {
 				function getProtocolFromHref(href) {
 					if (!href || href.indexOf(":") < 0) {
-						return "https://";
+						return "";
 					}
 
 					var matches = href.match(/^.*:\/\/|mailto/);
@@ -75,9 +75,9 @@
 											type: "select",
 											id: "protocol",
 											label: "Protocol",
-											validate: CKEDITOR.dialog.validate.notEmpty("Protocol cannot be empty!"),
-											default: "https://",
+											default: "",
 											items: [
+												[ "local", "" ],
 												["https://"],
 												["http://"],
 												["mailto:"],
