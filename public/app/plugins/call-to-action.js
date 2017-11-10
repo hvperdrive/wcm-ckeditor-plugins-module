@@ -169,11 +169,11 @@
 								label: "Add a Call to Action item",
 								command: "callToAction",
 								toolbar: "insert",
-								icon: "/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/img/cta.png",
+								icon: CKEditorConfigPack.assetsDirPath + "img/cta.png",
 								hidpi: true,
 							});
 
-							editor.addContentsCss("/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/css/style.css");
+							editor.addContentsCss(CKEditorConfigPack.assetsDirPath + "css/style.css");
 						},
 					},
 				};

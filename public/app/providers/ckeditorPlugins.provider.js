@@ -15,7 +15,7 @@
 						"ckeditorPluginDefinitionsPack",
 
 						function(ckeditorService, ckeditorPluginDefinitionsPack) {
-							_.forEach(ckeditorPluginDefinitionsPack, function (plugin, name) {
+							_.forEach(ckeditorPluginDefinitionsPack, function(plugin, name) {
 								ckeditorService.activatePlugin(name, plugin.plugin, plugin.meta);
 							});
 

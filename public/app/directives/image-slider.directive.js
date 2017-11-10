@@ -13,7 +13,7 @@ angular.module("ckeditor-plugins_0.0.58")
 					images: "=",
 				},
 				link: function($scope) {
-					$scope.assetsPath = CKEditorConfigPack.assetsPath;
+					$scope.assetsPath = CKEditorConfigPack.assetsDirPath;
 
 					$scope.addImage = function addImage() {
 						$scope.images.push({

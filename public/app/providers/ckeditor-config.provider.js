@@ -15,7 +15,6 @@ angular.module("ckeditor-plugins_0.0.58")
 
 			this.API.moduleVersionName = this.API.name + "_" + this.API.version;
 			this.API.modulePath = this.API.feDirPath;
-			this.API.assetsPath = this.assetsDirPath;
 
 			this.$get = function get() {
 				return this.API;

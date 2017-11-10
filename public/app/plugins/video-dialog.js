@@ -83,7 +83,7 @@
 								editor.addMenuGroup("videoGroup");
 								editor.addMenuItem("videoEdit", {
 									label: "Edit video",
-									icon: "/assets/modules/" + CKEditorConfig.name + "_" + CKEditorConfig.version + "/img/film.png",
+									icon: CKEditorConfig.assetsDirPath + "img/film.png",
 									command: "videoDialog",
 									group: "videoGroup",
 								});
@@ -106,7 +106,7 @@
 								upcast: function(el) {
 									return el.name === "div" && el.hasClass("wcm-video");
 								},
-								downcast: function () {
+								downcast: function() {
 									var vid = this.element.getChild(0);
 									var src = VideoService.getVideoSource(this.data.url_video);
 
@@ -155,11 +155,11 @@
 							editor.ui.addButton("videoDialog", {
 								label: "Insert a Youtube, Vimeo or Dailymotion video",
 								command: "videoDialog",
-								icon: "/assets/modules/" + CKEditorConfig.name + "_" + CKEditorConfig.version + "/img/film.png",
+								icon: CKEditorConfig.assetsDirPath + "img/film.png",
 								hidpi: true,
 							});
 
-							editor.addContentsCss("/assets/modules/" + CKEditorConfig.name + "_" + CKEditorConfig.version + "/css/videodetector.css");
+							editor.addContentsCss(CKEditorConfig.assetsDirPath + "css/videodetector.css");
 						},
 					},
 				};

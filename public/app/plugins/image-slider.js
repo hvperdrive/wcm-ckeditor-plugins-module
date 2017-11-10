@@ -43,7 +43,7 @@
 								template: [
 									"<div class=\"wcm-slider\">",
 										"<div class=\"wcm-slider__images\">", // eslint-disable-line
-											"<div class=\"wcm-slider__slide\" data-placeholder=\"true\" style=\"background-image: url('/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/img/image.png');\"></div>", // eslint-disable-line
+											"<div class=\"wcm-slider__slide\" data-placeholder=\"true\" style=\"background-image: url('" + CKEditorConfigPack.assetsDirPath + "img/image.png');\"></div>", // eslint-disable-line
 										"</div>", // eslint-disable-line
 									"</div>",
 
@@ -109,12 +109,12 @@
 								label: "Add an image slider",
 								command: "imageSlider",
 								toolbar: "insert",
-								icon: "/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/img/slider.png",
+								icon: CKEditorConfigPack.assetsDirPath + "img/slider.png",
 								hidpi: true,
 							});
-						}
-					}
+						},
+					},
 				};
-			}
+			},
 		]);
 })();
