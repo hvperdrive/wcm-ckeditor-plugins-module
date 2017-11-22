@@ -1,7 +1,7 @@
 "use-strict";
 
 (function(CKEDITOR) {
-	angular.module("ckeditor-plugins_0.0.58")
+	angular.module("ckeditor-plugins_1.0.0")
 		.factory("ckeditorPluginVideoDialog", [
 
 			"CKEditorConfigPack",
