@@ -10,6 +10,9 @@
     "CMS",
     "WCM"
   ],
+  "publishConfig": {
+    "@wcm:registry": "https://nexusrepo.antwerpen.be/repository/npm-private"
+  },
   "wcmModule": {
     "angularDirPath": "public/app/",
     "assetsDirPath": "public/assets/",
