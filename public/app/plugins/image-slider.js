@@ -80,6 +80,13 @@
 													url: removePrecedingSlash(img.getAttribute("data-src")),
 												},
 											},
+											crops: {
+												default: {
+													asset: {
+														url: removePrecedingSlash(img.getAttribute("data-src")),
+													},
+												},
+											},
 											original: {
 												asset: {
 													url: img.getAttribute("data-original-src"),
@@ -92,7 +99,7 @@
 									widget.setData("images", data.images);
 
 									widget.on("edit", function() {
-										newData = angular.copy(data);
+										newData = angular.copy(this.data);
 										DialogService.openModal({
 											templateUrl: CKEditorConfigPack.modulePath + "templates/sliderModal.tpl.html",
 											data: newData,
