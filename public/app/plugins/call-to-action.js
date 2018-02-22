@@ -148,6 +148,7 @@
 									title.setText(this.data.title);
 									cta.setText(this.data.label);
 									cta.setAttribute("href", this.data.protocol + this.data.url);
+									cta.setAttribute("data-cke-saved-href", this.data.protocol + this.data.url);
 									cta.setAttribute("title", this.data.description);
 									cta.setAttribute("target", this.data.target);
 								},
