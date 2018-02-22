@@ -1,7 +1,7 @@
 "use-strict";
 
 (function(CKEDITOR) {
-	angular.module("ckeditor-plugins_1.1.0")
+	angular.module("ckeditor-plugins_1.1.1")
 		.service("VideoService", [
 
 			function VideoService() {
