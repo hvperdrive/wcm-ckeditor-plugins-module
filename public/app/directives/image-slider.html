@@ -1,24 +1,22 @@
 <div class="c-slider-manager">
-    <div ng-form name="sliderImageForm" role="form" class="c-slider-manager__images">
-        <div class="c-slider-manager__image" ng-repeat="image in images">
-            <button class="c-button c-button--beta c-button--icon c-button--prev" ng-click="moveImage($index, -1)" title="{{'Move image left' | translate}}" ng-if="images.length > 1 && $index > 0">
-                <span class="fa fa-chevron-left"></span>
-            </button>
-            <button class="c-button c-button--beta c-button--icon c-button--next" ng-click="moveImage($index, 1)" title="{{'Move image right' | translate}}" ng-if="images.length > 1 && $index < images.length - 1">
-                <span class="fa fa-chevron-right"></span>
-            </button>
-            <button class="c-button c-button--error c-button--icon c-button--delete" ng-click="removeImage($index)" title="{{'Remove image' | translate}}">
-                <span class="fa fa-trash-o"></span>
-            </button>
-            <field
-                name="sliderImageUpload-{{$index}}"
-                type="'image'"
-                field-data="sliderImageForm"
-                model="images[$index]">
-            </field>
-        </div>
-        <div class="c-slider-manager__add">
-            <button ng-click="addImage()" translate ng-style="{ 'background-image': 'url(\'' + assetsPath + '/img/add-image.png\')'}">Add an image</button>
-        </div>
-    </div>
+	<div ng-form name="sliderImageForm" role="form" class="c-slider-manager__images">
+		<div class="c-slider-manager__image" ng-repeat="image in images">
+			<button class="c-button c-button--beta c-button--icon c-button--prev" ng-click="moveImage($index, -1)" title="{{'Move image left' | translate}}"
+			 ng-if="images.length > 1 && $index > 0">
+				<span class="fa fa-chevron-left"></span>
+			</button>
+			<button class="c-button c-button--beta c-button--icon c-button--next" ng-click="moveImage($index, 1)" title="{{'Move image right' | translate}}"
+			 ng-if="images.length > 1 && $index < images.length - 1">
+				<span class="fa fa-chevron-right"></span>
+			</button>
+			<button class="c-button c-button--error c-button--icon c-button--delete" ng-click="removeImage($index)" title="{{'Remove image' | translate}}">
+				<span class="fa fa-trash-o"></span>
+			</button>
+			<field name="sliderImageUpload-{{$index}}" type="'image'" field-data="sliderImageForm" model="images[$index]">
+			</field>
+		</div>
+		<div class="c-slider-manager__add">
+			<button ng-click="addImage()" translate ng-style="{ 'background-image': 'url(\'' + assetsPath + '/img/add-image.png\')'}">Add an image</button>
+		</div>
+	</div>
 </div>

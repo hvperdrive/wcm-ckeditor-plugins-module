@@ -1,12 +1,12 @@
 "use strict";
 
 angular.module("ckeditor-plugins_1.1.1")
-    .config([
+	.config([
 
-	"ckeditorPluginsProvider",
-	"ckeditorProvider",
+		"ckeditorPluginsProvider",
+		"ckeditorProvider",
 
-	function(ckeditorPluginsProvider) {
-		ckeditorPluginsProvider.controls.registerAll();
-	},
-]);
+		function(ckeditorPluginsProvider) {
+			ckeditorPluginsProvider.controls.registerAll();
+		},
+	]);
