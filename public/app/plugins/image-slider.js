@@ -32,10 +32,23 @@
 
 								container.setHtml(images.map(function(image) {
 									var uuid = image.value.original.asset.uuid;
+									var copyright = image.value.meta.copyright;
+									var description = image.value.meta.description;
+									var title = image.value.meta.title;
 									var croppedUrl = addPrecedingSlash(image.value.cropped.asset.url);
 									var originalUrl = image.value.original.asset.url ? addPrecedingSlash(image.value.original.asset.url) : "/files/download/" + uuid;
 
-									return "<div class=\"wcm-slider__slide\" style=\"background-image: url('" + croppedUrl + "');\" data-src=\"" + croppedUrl + "\" data-uuid=\"" + uuid + "\" data-original-src=\"" + originalUrl + "\"></div>";
+									return [
+										"<div class=\"wcm-slider__slide\"",
+										    "style=\"background-image: url('" + croppedUrl + "');\"",
+										    "data-src=\"" + croppedUrl + "\"",
+										    "data-uuid=\"" + uuid + "\"",
+										    "data-original-src=\"" + originalUrl + "\"",
+										    "data-copyright=\"" + copyright + "\"",
+										    "data-description=\"" + description + "\"",
+										    "data-title=\"" + title + "\"",
+										"></div>",
+									].join(" ");
 								}).join(""));
 							};
 
@@ -87,6 +100,11 @@
 															url: removePrecedingSlash(img.getAttribute("data-src")),
 														},
 													},
+												},
+												meta: {
+													copyright: img.getAttribute("data-copyright"),
+													description: img.getAttribute("data-description"),
+													title: img.getAttribute("data-title"),
 												},
 												original: {
 													asset: {
