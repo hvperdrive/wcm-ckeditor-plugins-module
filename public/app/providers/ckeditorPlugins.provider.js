@@ -1,7 +1,7 @@
 "use strict";
 
 (function() {
-	angular.module("ckeditor-plugins_1.2.0")
+	angular.module("ckeditor-plugins_1.2.1")
 		.provider("ckeditorPlugins", [
 
 			"$provide",

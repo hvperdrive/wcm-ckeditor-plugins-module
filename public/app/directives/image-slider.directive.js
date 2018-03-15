@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ckeditor-plugins_1.2.0")
+angular.module("ckeditor-plugins_1.2.1")
 	.directive("imageSlider", [
 		"CKEditorConfigPack",
 
