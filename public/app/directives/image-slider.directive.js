@@ -14,20 +14,6 @@ angular.module("ckeditor-plugins_1.1.1")
 				},
 				link: function($scope) {
 					$scope.assetsPath = CKEditorConfigPack.assetsDirPath;
-
-					$scope.addImage = function addImage() {
-						$scope.images.push({
-							src: "",
-						});
-					};
-
-					$scope.removeImage = function removeImage(index) {
-						$scope.images.splice(index, 1);
-					};
-
-					$scope.moveImage = function moveImage(index, factor) {
-						$scope.images.splice(index + factor, 0, $scope.images.splice(index, 1)[0]);
-					};
 				},
 			};
 		},

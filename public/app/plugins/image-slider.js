@@ -1,7 +1,7 @@
 "use-strict";
 
 (function() {
-	angular.module("ckeditor-plugins_1.1.1")
+	angular.module("ckeditor-plugins_1.1.0")
 		.factory("ckeditorPluginImageSlider", [
 
 			"CKEditorConfigPack",
@@ -31,9 +31,9 @@
 								}
 
 								container.setHtml(images.map(function(image) {
-									var uuid = image.original.asset.uuid;
-									var croppedUrl = addPrecedingSlash(image.cropped.asset.url);
-									var originalUrl = image.original.asset.url ? addPrecedingSlash(image.original.asset.url) : "/files/download/" + uuid;
+									var uuid = image.value.original.asset.uuid;
+									var croppedUrl = addPrecedingSlash(image.value.cropped.asset.url);
+									var originalUrl = image.value.original.asset.url ? addPrecedingSlash(image.value.original.asset.url) : "/files/download/" + uuid;
 
 									return "<div class=\"wcm-slider__slide\" style=\"background-image: url('" + croppedUrl + "');\" data-src=\"" + croppedUrl + "\" data-uuid=\"" + uuid + "\" data-original-src=\"" + originalUrl + "\"></div>";
 								}).join(""));
@@ -75,22 +75,24 @@
 										}
 
 										data.images.push({
-											cropped: {
-												asset: {
-													url: removePrecedingSlash(img.getAttribute("data-src")),
-												},
-											},
-											crops: {
-												default: {
+											value: {
+												cropped: {
 													asset: {
 														url: removePrecedingSlash(img.getAttribute("data-src")),
 													},
 												},
-											},
-											original: {
-												asset: {
-													url: img.getAttribute("data-original-src"),
-													uuid: img.getAttribute("data-uuid"),
+												crops: {
+													default: {
+														asset: {
+															url: removePrecedingSlash(img.getAttribute("data-src")),
+														},
+													},
+												},
+												original: {
+													asset: {
+														url: img.getAttribute("data-original-src"),
+														uuid: img.getAttribute("data-uuid"),
+													},
 												},
 											},
 										});
@@ -100,6 +102,7 @@
 
 									widget.on("edit", function() {
 										newData = angular.copy(this.data);
+
 										DialogService.openModal({
 											templateUrl: CKEditorConfigPack.modulePath + "templates/sliderModal.tpl.html",
 											data: newData,
