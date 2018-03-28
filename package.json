@@ -1,6 +1,6 @@
 {
     "name": "@wcm/ckeditor-plugins",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "CKEditor plugins for AM",
     "main": "app",
     "scripts": {},
