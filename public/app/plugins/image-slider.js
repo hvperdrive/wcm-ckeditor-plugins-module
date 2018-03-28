@@ -1,7 +1,7 @@
 "use-strict";
 
 (function() {
-	angular.module("ckeditor-plugins_1.2.1")
+	angular.module("ckeditor-plugins_1.2.2")
 		.factory("ckeditorPluginImageSlider", [
 
 			"CKEditorConfigPack",
@@ -40,13 +40,13 @@
 
 									return [
 										"<div class=\"wcm-slider__slide\"",
-										    "style=\"background-image: url('" + croppedUrl + "');\"",
-										    "data-src=\"" + croppedUrl + "\"",
-										    "data-uuid=\"" + uuid + "\"",
-										    "data-original-src=\"" + originalUrl + "\"",
-										    "data-copyright=\"" + copyright + "\"",
-										    "data-description=\"" + description + "\"",
-										    "data-title=\"" + title + "\"",
+										"style=\"background-image: url('" + croppedUrl + "');\"",
+										"data-src=\"" + croppedUrl + "\"",
+										"data-uuid=\"" + uuid + "\"",
+										"data-original-src=\"" + originalUrl + "\"",
+										"data-copyright=\"" + copyright + "\"",
+										"data-description=\"" + description + "\"",
+										"data-title=\"" + title + "\"",
 										"></div>",
 									].join(" ");
 								}).join(""));
@@ -55,9 +55,9 @@
 							editor.widgets.add("imageSlider", {
 								template: [
 									"<div class=\"wcm-slider\">",
-										"<div class=\"wcm-slider__images\">", // eslint-disable-line
-											"<div class=\"wcm-slider__slide\" data-placeholder=\"true\" style=\"background-image: url('" + CKEditorConfigPack.assetsDirPath + "img/image.png');\"></div>", // eslint-disable-line
-										"</div>", // eslint-disable-line
+									"<div class=\"wcm-slider__images\">", // eslint-disable-line
+									"<div class=\"wcm-slider__slide\" data-placeholder=\"true\" style=\"background-image: url('" + CKEditorConfigPack.assetsDirPath + "img/image.png');\"></div>", // eslint-disable-line
+									"</div>", // eslint-disable-line
 									"</div>",
 
 								].join(""),
@@ -114,6 +114,13 @@
 												},
 											},
 										});
+									}
+
+									// quickfix for error (needs fix in core)
+									if (!data.images.length) {
+										data.images = [{
+											value: {},
+										}];
 									}
 
 									widget.setData("images", data.images);
