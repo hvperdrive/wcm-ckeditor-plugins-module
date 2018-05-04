@@ -1,6 +1,6 @@
 # wcm-ckeditor-plugins-module
 
-This module adds the following RTE plugins to the wcm:
+This module adds the following RTE plugins to the WCM:
 - Call to action
 - Photo slider
 - Video support (youtube, vimeo, dailymotion)
@@ -22,4 +22,5 @@ This module adds the following RTE plugins to the wcm:
 
 Please read the following on how to work with WCM modules before changing anything to this repo.
 
-[Modules manual](https://github.com/hvperdrive/pelorus-cms/blob/develop/readmes/modules.md)
+[Modules manual](https://github.com/hvperdrive/pelorus-cms/blob/develop/readmes/modules.md) <br>
+[Modules manual on Digipolis Bitbucket](https://bitbucket.antwerpen.be/projects/WCM/repos/wcm/browse/readmes/modules.md?at=refs%2Fheads%2Fv3-master)
