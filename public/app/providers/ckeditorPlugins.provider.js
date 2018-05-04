@@ -1,7 +1,7 @@
 "use strict";
 
 (function() {
-	angular.module("ckeditor-plugins_0.0.58")
+	angular.module("ckeditor-plugins_1.2.2")
 		.provider("ckeditorPlugins", [
 
 			"$provide",
@@ -15,7 +15,7 @@
 						"ckeditorPluginDefinitionsPack",
 
 						function(ckeditorService, ckeditorPluginDefinitionsPack) {
-							_.forEach(ckeditorPluginDefinitionsPack, function (plugin, name) {
+							_.forEach(ckeditorPluginDefinitionsPack, function(plugin, name) {
 								ckeditorService.activatePlugin(name, plugin.plugin, plugin.meta);
 							});
 

@@ -1,30 +1,29 @@
 {
-    "name": "ckeditor-plugins",
-    "version": "0.0.58",
+    "name": "@wcm/ckeditor-plugins",
+    "version": "1.2.2",
     "description": "CKEditor plugins for AM",
-    "main": "index.js",
+    "main": "app",
     "scripts": {},
     "keywords": [
-        "test"
+        "CKEditor",
+        "Pelorus",
+        "CMS",
+        "WCM"
     ],
+    "publishConfig": {
+        "@wcm:registry": "https://nexusrepo.antwerpen.be/repository/npm-private"
+    },
     "wcmModule": {
-        "frontend": {
-            "dirPath": "public/app/",
-            "assetsDirPath": "public/assets/",
-            "cssDirPath": "public/assets/css/",
-            "moduleConfig": {
-                "translationKey": "ckeditor-plugins",
-                "navigationItem": false,
-                "authentication": {
-                    "requiresLogin": false
-                }
+        "angularDirPath": "public/app/",
+        "assetsDirPath": "public/assets/",
+        "cssDirPath": "public/assets/css/",
+        "moduleConfig": {
+            "angularModule": "ckeditor-plugins",
+            "translationKey": "ckeditor-plugins",
+            "navigationItem": false,
+            "authentication": {
+                "requiresLogin": false
             }
-        },
-        "backend": {
-            "dirPath": "app/",
-            "routeDirPaths": [
-                "app/"
-            ]
         }
     },
     "author": "Jeroen Valcke",
@@ -39,6 +38,7 @@
         "gulp-clean": "~0.3.2",
         "gulp-replace": "~0.5.4",
         "gulp-zip": "~3.2.0",
+        "lodash": "^4.17.4",
         "run-sequence": "~1.2.2"
     }
 }

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ckeditor-plugins_0.0.58")
+angular.module("ckeditor-plugins_1.2.2")
 	.directive("imageSlider", [
 		"CKEditorConfigPack",
 
@@ -13,21 +13,7 @@ angular.module("ckeditor-plugins_0.0.58")
 					images: "=",
 				},
 				link: function($scope) {
-					$scope.assetsPath = CKEditorConfigPack.assetsPath;
-
-					$scope.addImage = function addImage() {
-						$scope.images.push({
-							src: "",
-						});
-					};
-
-					$scope.removeImage = function removeImage(index) {
-						$scope.images.splice(index, 1);
-					};
-
-					$scope.moveImage = function moveImage(index, factor) {
-						$scope.images.splice(index + factor, 0, $scope.images.splice(index, 1)[0]);
-					};
+					$scope.assetsPath = CKEditorConfigPack.assetsDirPath;
 				},
 			};
 		},

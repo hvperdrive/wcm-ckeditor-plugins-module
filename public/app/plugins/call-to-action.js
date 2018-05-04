@@ -1,7 +1,7 @@
 "use-strict";
 
 (function(CKEDITOR) {
-	angular.module("ckeditor-plugins_0.0.58")
+	angular.module("ckeditor-plugins_1.2.2")
 		.factory("ckeditorPluginCallToAction", [
 
 			"CKEditorConfigPack",
@@ -148,6 +148,7 @@
 									title.setText(this.data.title);
 									cta.setText(this.data.label);
 									cta.setAttribute("href", this.data.protocol + this.data.url);
+									cta.setAttribute("data-cke-saved-href", this.data.protocol + this.data.url);
 									cta.setAttribute("title", this.data.description);
 									cta.setAttribute("target", this.data.target);
 								},
@@ -169,11 +170,11 @@
 								label: "Add a Call to Action item",
 								command: "callToAction",
 								toolbar: "insert",
-								icon: "/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/img/cta.png",
+								icon: CKEditorConfigPack.assetsDirPath + "img/cta.png",
 								hidpi: true,
 							});
 
-							editor.addContentsCss("/assets/modules/" + CKEditorConfigPack.name + "_" + CKEditorConfigPack.version + "/css/style.css");
+							editor.addContentsCss(CKEditorConfigPack.assetsDirPath + "css/style.css");
 						},
 					},
 				};
