@@ -1,0 +1,8 @@
+node_modules
+coverage
+dist
+.vscode
+.editorconfig
+.eslintignore
+.eslintrc.js
+gulpfile.js

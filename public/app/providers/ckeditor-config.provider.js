@@ -1,22 +1,23 @@
-'use strict';
+"use strict";
 
-angular.module('ckeditor-plugins_0.0.24')
-    .provider('CKEditorConfig', [
-        function membersConfig() {
+angular.module("ckeditor-plugins_1.2.2")
+	.provider("CKEditorConfigPack", [
+		"MODULE_ENV_CONFIG",
 
-            this.API = {
-                name: 'ckeditor-plugins',
-                version: '0.0.24',
-                basePath: 'app/modules/',
-                assetsBasePath: '/assets/modules/'
-            };
+		function membersConfig(MODULE_ENV_CONFIG) {
+			this.API = {
+				name: MODULE_ENV_CONFIG.angularModule,
+				version: "1.2.2",
+				feDirPath: MODULE_ENV_CONFIG.feDirPath,
+				assetsDirPath: MODULE_ENV_CONFIG.assetsDirPath,
+				cssDirPath: MODULE_ENV_CONFIG.cssDirPath,
+			};
 
-            this.API.moduleVersionName = this.API.name + '_' + this.API.version;
-            this.API.modulePath = this.API.basePath + this.API.moduleVersionName + '/';
-            this.API.assetsPath = this.API.assetsBasePath + this.API.moduleVersionName + '/';
+			this.API.moduleVersionName = this.API.name + "_" + this.API.version;
+			this.API.modulePath = this.API.feDirPath;
 
-            this.$get = function get() {
-                return this.API;
-            };
-        }
-    ]);
+			this.$get = function get() {
+				return this.API;
+			};
+		},
+	]);
