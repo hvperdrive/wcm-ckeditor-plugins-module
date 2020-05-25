@@ -1,42 +1,39 @@
-"use-strict";
-
 (function(CKEDITOR) {
-	angular.module("ckeditor-plugins_1.2.2")
+	angular.module("ckeditor-plugins_2.1.3")
 		.service("VideoService", [
-
 			function VideoService() {
 				var API = {};
 
-				API.calculateAndPositionMask = function calculateAndPositionMask(self) {
+				API.calculateAndPositionMask = function calculateAndPositionMask(wrapperEl, widgetEl, data) {
 					// Get mask
-					var mask = self.wrapper.getChild(1);
+					var mask = wrapperEl.getChild(1);
 
-					if (!mask || !self.element || !self.element.isVisible()) {
+					if (!mask || !widgetEl || !widgetEl.isVisible()) {
 						return;
 					}
 
 					// Set mask to the same height and width of the video
-					mask.setStyle("height", self.element.getComputedStyle("padding-bottom"));
-					mask.setStyle("width", self.element.getComputedStyle("width"));
+					mask.setStyle("height", widgetEl.getComputedStyle("padding-bottom"));
+					mask.setStyle("width", widgetEl.getComputedStyle("width"));
 
 					// Set video element floated if aligned left or right
-					if (["left", "right"].indexOf(self.data.align) !== -1) {
-						self.element.setStyle("float", self.data.align);
-						self.element.removeStyle("margin");
+					if (["left", "right"].indexOf(data.align) !== -1) {
+						widgetEl.setStyle("float", data.align);
+						widgetEl.removeStyle("margin");
 					}
 					// Make sure mask is also positioned correctly
-					if (self.data.align === "left") {
+					if (data.align === "left") {
 						mask.setStyle("left", "0");
 						mask.setStyle("right", "auto");
 					}
-					if (self.data.align === "right") {
+					if (data.align === "right") {
 						mask.setStyle("right", "0");
 						mask.setStyle("left", "auto");
 					}
-					if (self.data.align === "center") {
+					if (data.align === "center") {
 						// Undo float and set margin to auto to center image
-						self.element.setStyle("float", "none");
-						self.element.setStyle("margin", "auto");
+						widgetEl.setStyle("float", "none");
+						widgetEl.setStyle("margin", "auto");
 						// Set mask over whole width.
 						mask.setStyle("left", "0");
 						mask.setStyle("right", "0");

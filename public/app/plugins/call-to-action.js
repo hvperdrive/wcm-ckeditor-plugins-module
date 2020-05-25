@@ -1,7 +1,7 @@
 "use-strict";
 
 (function(CKEDITOR) {
-	angular.module("ckeditor-plugins_1.2.2")
+	angular.module("ckeditor-plugins_2.1.3")
 		.factory("ckeditorPluginCallToAction", [
 
 			"CKEditorConfigPack",
@@ -93,10 +93,10 @@
 											id: "target",
 											label: "Target",
 											validate: CKEDITOR.dialog.validate.notEmpty("Target cannot be empty!"),
-											default: "_self",
+											default: "_blank",
 											items: [
-												["Self (default)", "_self"],
-												["Blank", "_blank"],
+												["Blank (default)", "_blank"],
+												["Self", "_self"],
 											],
 											setup: function(widget) {
 												this.setValue(widget.data.target);
@@ -135,7 +135,7 @@
 								template: [
 									"<div class=\"wcm-cta\">",
 									"<h3 class=\"wcm-cta__title\">Title</h3>", // eslint-disable-line
-									"<a class=\"wcm-cta__action\" href=\"href\" title=\"description\" target=\"_self\">Call to Action</a>", // eslint-disable-line
+									"<a class=\"wcm-cta__action\" href=\"href\" title=\"description\" target=\"_blank\">Call to Action</a>", // eslint-disable-line
 									"</div>",
 								].join(""),
 								upcast: function(el) {
@@ -161,7 +161,7 @@
 									this.setData("url", getUrlFromHref(cta.getAttribute("href")));
 									this.setData("protocol", getProtocolFromHref(cta.getAttribute("href")));
 									this.setData("description", cta.getAttribute("title") || "");
-									this.setData("target", cta.getAttribute("target") || "_self");
+									this.setData("target", cta.getAttribute("target") || "_blank");
 								},
 								dialog: "callToAction",
 							});
