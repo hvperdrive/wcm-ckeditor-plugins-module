@@ -1,4 +1,4 @@
-<form name="rteVideoForm" role="form" ng-submit="onConfirm()">
+<form name="form" novalidate="true" role="form" ng-submit="confirm()">
     <div class="field-wrapper">
         <div class="c-input">
             <div class="c-input_inner">
@@ -12,16 +12,33 @@
                     ng-model="videoUrl"
                     ng-required="true"
                 />
+                <div
+                    class="c-label--small c-label--error"
+                    ng-show="form['rte-video_url'].$dirty && !form['rte-video_url'].$valid"
+                    ng-repeat="(key, value) in form['rte-video_url'].$error">
+                    </i><span>{{errorMessageService.$get(key)}}</span>
+                </div>
             </div>
         </div>
     </div>
-    <field
+    <Field
+        class='rte-video-width'
         ng-cloak
-        name="rte-transcrition_url"
+        name="rte-transcription_width"
+        label="'Width (%)' | translate"
+        type="'number'"
+        model="width"
+        field-data="form"
+        required="true"
+    ></Field>
+    <field
+        class='rte-transcription'
+        ng-cloak
+        name="rte-transcription_url"
         label="'Transcription file' | translate"
         type="'file'"
         model="transcriptionFile"
-        field-data="rteVideoForm"
+        field-data="form"
         required="true">
     </field>
 

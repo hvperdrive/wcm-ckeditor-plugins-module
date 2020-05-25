@@ -1,8 +1,9 @@
 angular.module("ckeditor-plugins_2.1.3")
 	.directive("rteVideo", [
-		"CKEditorConfigPack",
+        "CKEditorConfigPack",
+        "ErrorMessageService",
 
-		function(CKEditorConfigPack) {
+		function(CKEditorConfigPack, ErrorMessageService) {
 			return {
 				templateUrl: CKEditorConfigPack.modulePath + "/directives/video.html",
 				replace: true,
@@ -10,14 +11,32 @@ angular.module("ckeditor-plugins_2.1.3")
 				scope: {
                     videoUrl: "=",
                     transcriptionFile: "=",
+                    width: "=",
                     onConfirm: "=",
                     onClose: "="
 				},
 				link: function($scope) {
-                    $scope.$watch("transcriptionUrl", (nv, ov) => {
-                        console.log(nv, ov);
-                    })
-				},
+                    $scope.errorMessageService = ErrorMessageService;
+                    $scope.confirm = function() {
+                        if ($scope.form.$valid) {
+                            return $scope.onConfirm();
+                        }
+
+                        $scope.form.$setDirty();
+
+                        for (let errorProp in $scope.form.$error) {
+                            if (!$scope.form.$error.hasOwnProperty(errorProp))
+                                return;
+
+                            for (let error of $scope.form.$error[errorProp]) {
+                                if (error.$setDirty) {
+                                    error.$setDirty();
+                                }
+                            }
+                        }
+                    }
+
+                },
 			};
 		},
 	]);

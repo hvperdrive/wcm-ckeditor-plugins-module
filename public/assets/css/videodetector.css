@@ -6,3 +6,12 @@
 .wcm-video[style*="float:right"] {
     margin-left: 15px;
 }
+.rte-transcription {
+    margin-bottom: 1rem;
+}
+.rte-transcription .c-label--error {
+    margin-top: -1.1rem;
+}
+.rte-video-width .c-input-text--sm {
+    width: 100%
+}
