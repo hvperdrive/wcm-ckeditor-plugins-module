@@ -1,0 +1,49 @@
+<form name="form" novalidate="true" role="form" ng-submit="confirm()">
+    <div class="field-wrapper">
+        <div class="c-input">
+            <div class="c-input_inner">
+                <label class="c-label ng-binding ng-scope required" translate>
+                    Video url
+                </label>
+                <input
+                    class="c-input-text c-input-text--sm"
+                    name="rte-video_url"
+                    type="url"
+                    ng-model="videoUrl"
+                    ng-required="true"
+                />
+                <div
+                    class="c-label--small c-label--error"
+                    ng-show="form['rte-video_url'].$dirty && !form['rte-video_url'].$valid"
+                    ng-repeat="(key, value) in form['rte-video_url'].$error">
+                    </i><span>{{errorMessageService.$get(key)}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Field
+        class='rte-video-width'
+        ng-cloak
+        name="rte-transcription_width"
+        label="'Width (%)' | translate"
+        type="'number'"
+        model="width"
+        field-data="form"
+        required="true"
+    ></Field>
+    <field
+        class='rte-transcription'
+        ng-cloak
+        name="rte-transcription_url"
+        label="'Transcription file' | translate"
+        type="'file'"
+        model="transcriptionFile"
+        field-data="form"
+        required="true">
+    </field>
+
+    <div class="c-buttonGroup">
+        <button type="button" ng-click="onClose()" class="c-button c-button--alpha c-button--sm c-button--floatLeft" translate>cancel</button>
+        <button type="submit" class="c-button c-button--error c-button--sm c-button--floatRight" translate>confirm</button>
+    </div>
+</form>

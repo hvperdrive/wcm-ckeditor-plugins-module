@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ckeditor-plugins_1.2.2")
+angular.module("ckeditor-plugins_1.3.0")
 	.config([
 
 		"ckeditorPluginsProvider",
