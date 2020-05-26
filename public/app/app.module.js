@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("ckeditor-plugins_1.3.0", [
+angular.module("ckeditor-plugins_2.2.0", [
 	"pelorus.providers",
 ])
 .run([function() {
