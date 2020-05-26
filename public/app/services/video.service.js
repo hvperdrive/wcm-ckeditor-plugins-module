@@ -1,5 +1,5 @@
 (function(CKEDITOR) {
-	angular.module("ckeditor-plugins_2.2.0")
+	angular.module("ckeditor-plugins_2.2.1")
 		.service("VideoService", [
 			function VideoService() {
 				var API = {};
