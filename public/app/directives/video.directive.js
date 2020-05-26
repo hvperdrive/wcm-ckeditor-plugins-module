@@ -1,7 +1,7 @@
 angular.module("ckeditor-plugins_2.2.0")
 	.directive("rteVideo", [
-        "CKEditorConfigPack",
-        "ErrorMessageService",
+		"CKEditorConfigPack",
+		"ErrorMessageService",
 
 		function(CKEditorConfigPack, ErrorMessageService) {
 			return {
@@ -9,34 +9,35 @@ angular.module("ckeditor-plugins_2.2.0")
 				replace: true,
 				restrict: "E",
 				scope: {
-                    videoUrl: "=",
-                    transcriptionFile: "=",
-                    width: "=",
-                    onConfirm: "=",
-                    onClose: "="
+					videoUrl: "=",
+					transcriptionFile: "=",
+					width: "=",
+					onConfirm: "=",
+					onClose: "=",
 				},
 				link: function($scope) {
-                    $scope.errorMessageService = ErrorMessageService;
-                    $scope.confirm = function() {
-                        if ($scope.form.$valid) {
-                            return $scope.onConfirm();
-                        }
+					$scope.errorMessageService = ErrorMessageService;
+					$scope.confirm = function() {
+						if ($scope.form.$valid) {
+							return $scope.onConfirm();
+						}
 
-                        $scope.form.$setDirty();
+						$scope.form.$setDirty();
 
-                        for (let errorProp in $scope.form.$error) {
-                            if (!$scope.form.$error.hasOwnProperty(errorProp))
-                                return;
+						_.forEach($scope.form.$error, function(errorEls, key) {
+							if (!$scope.form.$error.hasOwnProperty(key)) {
+								return;
+							}
 
-                            for (let error of $scope.form.$error[errorProp]) {
-                                if (error.$setDirty) {
-                                    error.$setDirty();
-                                }
-                            }
-                        }
-                    }
+							_.forEach(errorEls, function(errorElement) {
+								if (errorElement.$setDirty) {
+									errorElement.$setDirty();
+								}
+							});
+						});
+					};
 
-                },
+				},
 			};
 		},
 	]);
