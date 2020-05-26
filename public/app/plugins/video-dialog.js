@@ -1,15 +1,17 @@
 "use-strict";
 
 (function(CKEDITOR) {
-	angular.module("ckeditor-plugins_1.1.1")
+	angular.module("ckeditor-plugins_1.3.0")
 		.factory("ckeditorPluginVideoDialog", [
 
 			"CKEditorConfigPack",
-			"VideoService",
+            "VideoService",
+            "DialogService",
 
 			function ckeditorPluginVideoDialog(
 				CKEditorConfig,
-				VideoService
+                VideoService,
+                DialogService
 			) {
 				return {
 					meta: {
@@ -36,104 +38,85 @@
 							}
 						},
 						init: function(editor) {
+                            var updateWidget = function(vidEl, widgetEl, wrapperEl, data) {
+                                var src = VideoService.getVideoSource(data.videoUrl);
+                                var transcriptionFile = data.transcriptionFile;
 
-							CKEDITOR.dialog.add("videoDialog", function() {
-								return {
-									title: "Insert a Youtube, Vimeo, Dailymotion URL or embed code",
-									minWidth: 400,
-									minHeight: 100,
-									contents: [{
-										id: "tab-basic",
-										label: "Basic Settings",
-										elements: [{
-											type: "text",
-											id: "url_video",
-											label: "Youtube, Vimeo, Dailymotion URL or embed code",
-											validate: CKEDITOR.dialog.validate.notEmpty("Empty!"),
-											setup: function(widget) {
-												this.setValue(widget.data.url_video);
-											},
-											commit: function(widget) {
-												widget.setData("url_video", this.getValue());
-											},
-										},
-										{
-											type: "text",
-											id: "width",
-											label: "Width (%)",
-											validate: CKEDITOR.dialog.validate.notEmpty("Empty!"),
-											setup: function(widget) {
-												this.setValue(widget.data.width || "100");
-											},
-											commit: function(widget) {
-												var width = parseInt(this.getValue(), 10);
+                                if (vidEl.getAttribute('src') !== src) {
+                                    vidEl.setAttribute("src", src);
+                                }
 
-												if (isNaN(width)) {
-													width = 100;
-												}
+                                widgetEl.setAttribute("data-transcription-uuid", _.get(transcriptionFile, "uuid") || "");
+                                widgetEl.setAttribute("data-transcription-src", "/files/download/" + _.get(transcriptionFile, "uuid") || "");
+                                widgetEl.setAttribute("data-transcription-name", _.get(transcriptionFile, "name") || "");
+                                widgetEl.setAttribute("data-transcription-title", _.get(transcriptionFile, "meta.title") || "");
+                                widgetEl.setAttribute("data-transcription-description", _.get(transcriptionFile, "meta.description") || "");
 
-												widget.setData("width", width);
-											},
-										}],
-									}],
-								};
-							});
+                                widgetEl.setStyles({
+                                    width: (data.width || "100") + "%",
+                                    "padding-bottom": 56.25 * (data.width || 100) / 100 + "%"
+                                });
 
-							if (editor.contextMenu) {
-								editor.addMenuGroup("videoGroup");
-								editor.addMenuItem("videoEdit", {
-									label: "Edit video",
-									icon: CKEditorConfig.assetsDirPath + "img/film.png",
-									command: "videoDialog",
-									group: "videoGroup",
-								});
+                                VideoService.calculateAndPositionMask(wrapperEl, widgetEl, data);
+                            };
 
-								editor.contextMenu.addListener(function(element) {
-									if (element.getChild && element.getChild(0).hasClass("wcm-video")) {
-										return {
-											videoEdit: CKEDITOR.TRISTATE_OFF,
-										};
-									}
-								});
-							}
+                            var getWidthAsNumber = function(w) {
+                                var result = parseInt(w);
+
+                                if (isNaN(result)) {
+                                    return 100;
+                                }
+
+                                return result
+                            };
 
 							editor.widgets.add("videoDialog", {
 								template: [
-									"<div class=\"wcm-video\">",
-									"<iframe allowfullscreen=\"allowfullscreen\" frameborder=\"0\" src=\"\" class=\"wcm-video__frame\"></iframe>",
-									"</div>",
-								].join(""),
+                                    "<div class=\"wcm-video\"",
+                                        " data-transcription-uuid=\"\"",
+                                        " data-transcription-src=\"\"",
+                                        " data-transcription-name=\"\"",
+                                        " data-transcription-title=\"\"",
+                                        " data-transcription-description=\"\"",
+                                    ">",
+                                        "<iframe",
+                                            " allowfullscreen=\"allowfullscreen\"",
+                                            " frameborder=\"0\"",
+                                            " src=\"\"",
+                                            " class=\"wcm-video__frame\"",
+                                        "></iframe>",
+                                    "</div>",
+                                ].join(""),
 								upcast: function(el) {
 									return el.name === "div" && el.hasClass("wcm-video");
 								},
 								downcast: function() {
-									var vid = this.element.getChild(0);
-									var src = VideoService.getVideoSource(this.data.url_video);
-
-									vid.setAttribute("src", src);
-
-									this.element.setStyles({
-										width: (this.data.width || "100") + "%",
-										"padding-bottom": (56.25 * (this.data.width || 100) / 100) + "%",
-									});
-
-									VideoService.calculateAndPositionMask(this);
+									updateWidget(this.element.getChild(0), this.element, this.wrapper, this.data);
 								},
 								init: function() {
-									var vid = this.element.getChild(0);
-									var width = this.element.getStyle("width");
+                                    var widget = this;
+									var vid = widget.element.getChild(0);
+                                    var width = getWidthAsNumber(this.data.width);
+                                    var transcriptionFile = {
+                                        uuid: widget.element.getAttribute('data-transcription-uuid'),
+                                        name: widget.element.getAttribute('data-transcription-name'),
+                                        meta: {
+                                            title: widget.element.getAttribute('data-transcription-title'),
+                                            description: widget.element.getAttribute('data-transcription-description')
+                                        }
+                                    };
 
+                                    widget.setData('videoUrl', vid.getAttribute('src'));
+                                    widget.setData('transcriptionFile', transcriptionFile.uuid ? transcriptionFile : null);
+                                    widget.setData('width', width || 100);
 
-									this.setData("url_video", vid.getAttribute("src"));
-									this.setData("width", width || 100);
-
-									if (["left", "right"].indexOf(this.element.getStyle("float")) !== -1) {
-										this.setData("align", this.element.getStyle("float"));
-									} else if (this.element.getStyle("margin") === "auto") {
-										this.setData("align", "center");
+									if (["left", "right"].indexOf(widget.element.getStyle("float")) !== -1) {
+										widget.setData("align", widget.element.getStyle("float"));
+									} else if (widget.element.getStyle("margin") === "auto") {
+										widget.setData("align", "center");
 									}
 
-									this.element.setStyles({
+									widget.element.setStyles({
 										"position": "relative",
 										"height": 0,
 									});
@@ -142,14 +125,28 @@
 										"position": "absolute",
 										"height": "100%",
 										"width": "100%",
-									});
+                                    });
+
+                                    widget.on("edit", function() {
+                                        newData = angular.copy(widget.data || {});
+
+                                        DialogService.openModal({
+                                            templateUrl: CKEditorConfig.modulePath + "templates/videoModal.tpl.html",
+                                            data: newData,
+                                        }).then(function() {
+                                            widget.setData("videoUrl", newData.videoUrl);
+                                            widget.setData('transcriptionFile', newData.transcriptionFile);
+                                            widget.setData('width', newData.width);
+                                            updateWidget(widget.element.getChild(0), widget.element, widget.wrapper, newData);
+                                            editor.fire("change");
+                                        });
+                                    });
 								},
 								data: function() {
-									VideoService.calculateAndPositionMask(this);
+									VideoService.calculateAndPositionMask(this.wrapper, this.element, this.data);
 								},
 								styleableElements: "div",
-								mask: true,
-								dialog: "videoDialog",
+                                mask: true,
 							});
 
 							editor.ui.addButton("videoDialog", {

@@ -1,7 +1,7 @@
 "use-strict";
 
 (function() {
-	angular.module("ckeditor-plugins_1.1.1")
+	angular.module("ckeditor-plugins_1.3.0")
 		.service("ckeditorPluginDefinitionsPack", [
 
 			"ckeditorPluginCallToAction",
