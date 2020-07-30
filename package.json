@@ -1,44 +1,44 @@
 {
-  "name": "@wcm/ckeditor-plugins",
-  "version": "2.2.2",
-  "description": "CKEditor plugins for AM",
-  "main": "app",
-  "scripts": {},
-  "keywords": [
-    "CKEditor",
-    "Pelorus",
-    "CMS",
-    "WCM"
-  ],
-  "publishConfig": {
-    "@wcm:registry": "https://nexusrepo.antwerpen.be/repository/npm-private"
-  },
-  "wcmModule": {
-    "angularDirPath": "public/app/",
-    "assetsDirPath": "public/assets/",
-    "cssDirPath": "public/assets/css/",
-    "moduleConfig": {
-      "angularModule": "ckeditor-plugins",
-      "translationKey": "ckeditor-plugins",
-      "navigationItem": false,
-      "authentication": {
-        "requiresLogin": false
-      }
+    "name": "@wcm/ckeditor-plugins",
+    "version": "2.3.0",
+    "description": "CKEditor plugins for AM",
+    "main": "app",
+    "scripts": {},
+    "keywords": [
+        "CKEditor",
+        "Pelorus",
+        "CMS",
+        "WCM"
+    ],
+    "publishConfig": {
+        "@wcm:registry": "https://nexusrepo.antwerpen.be/repository/npm-private/"
+    },
+    "wcmModule": {
+        "angularDirPath": "public/app/",
+        "assetsDirPath": "public/assets/",
+        "cssDirPath": "public/assets/css/",
+        "moduleConfig": {
+            "angularModule": "ckeditor-plugins",
+            "translationKey": "ckeditor-plugins",
+            "navigationItem": false,
+            "authentication": {
+                "requiresLogin": false
+            }
+        }
+    },
+    "author": "Jeroen Valcke",
+    "license": "ISC",
+    "dependencies": {},
+    "devDependencies": {
+        "@district01/eslint-config": "~1.0.0",
+        "gulp": "~3.9.1",
+        "gulp-angular-templatecache": "~2.0.0",
+        "gulp-apidoc": "~0.2.0",
+        "gulp-apidoc-swagger": "~0.2.2",
+        "gulp-clean": "~0.3.2",
+        "gulp-replace": "~0.5.4",
+        "gulp-zip": "~3.2.0",
+        "lodash": "^4.17.4",
+        "run-sequence": "~1.2.2"
     }
-  },
-  "author": "Jeroen Valcke",
-  "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
-    "@district01/eslint-config": "~1.0.0",
-    "gulp": "~3.9.1",
-    "gulp-angular-templatecache": "~2.0.0",
-    "gulp-apidoc": "~0.2.0",
-    "gulp-apidoc-swagger": "~0.2.2",
-    "gulp-clean": "~0.3.2",
-    "gulp-replace": "~0.5.4",
-    "gulp-zip": "~3.2.0",
-    "lodash": "^4.17.4",
-    "run-sequence": "~1.2.2"
-  }
 }
