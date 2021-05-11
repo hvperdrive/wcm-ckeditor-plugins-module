@@ -38,7 +38,7 @@
         "gulp-clean": "~0.3.2",
         "gulp-replace": "~0.5.4",
         "gulp-zip": "~3.2.0",
-        "lodash": "^4.17.4",
+        "lodash": "^4.17.21",
         "run-sequence": "~1.2.2"
     }
 }
